@@ -30,22 +30,28 @@ fi
 
 #=====================================================#
 
-# Salt Master
-# https://docs.saltstack.com/en/latest/topics/installation/ubuntu.html
-apt install salt-master -y
+# Controlleer of de server een master server wordt
+MasterServer="$(cat config.cfg | grep MasterServer)"
+MasterServer=${MasterServer#MasterServer=}
+if [ "$MasterServer" = "true" ]
+then
+    # Salt Master
+    # https://docs.saltstack.com/en/latest/topics/installation/ubuntu.html
+    apt install salt-master -y
 
-# Salt Master instellen
-# https://docs.saltstack.com/en/latest/ref/configuration/index.html#configuring-salt
+    # Salt Master instellen
+    # https://docs.saltstack.com/en/latest/ref/configuration/index.html#configuring-salt
 
-# Laat Salt via alle adressen luisteren
-sed 's/#interface: 0.0.0.0/interface: 0.0.0.0/' /etc/salt/master
-# Voeg de MASTER_ID toe, om naar de minions mee te geven
-echo "master_id: SaltMaster_$HOSTNAME" >> /etc/salt/master
+    # Laat Salt via alle adressen luisteren
+    sed 's/#interface: 0.0.0.0/interface: 0.0.0.0/' /etc/salt/master
+    # Voeg de MASTER_ID toe, om naar de minions mee te geven
+    echo "master_id: SaltMaster_$HOSTNAME" >> /etc/salt/master
 
-# Salt Master als daemon toevoegen
-systemctl enable salt-master
-# Start de Salt Master
-systemctl start salt-master
+    # Salt Master als daemon toevoegen
+    systemctl enable salt-master
+    # Start de Salt Master
+    systemctl start salt-master
+fi
 
 #=====================================================#
 
