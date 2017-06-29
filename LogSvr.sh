@@ -58,3 +58,24 @@ systemctl restart apache2.service
 echo "Nagios service starten en instellen als daemon" >> /root/LinSvc.log
 systemctl start nagios.service
 systemctl enable nagios.service
+
+echo "Nagios Core afgerond" >> /root/LinSvc.log
+echo "" >> /root/LinSvc.log
+echo "Nagios Plugins" >> /root/LinSvc.log
+echo "Nagios Plugins Deps installeren" >> /root/LinSvc.log
+apt-get install -y libmcrypt-dev libssl-dev bc dc snmp libnet-snmp-perl gettext
+
+echo "Nagios Plugins Source downloaden" >> /root/LinSvc.log
+cd /tmp
+wget --no-check-certificate -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
+tar zxf nagios-plugins.tar.gz
+
+echo "Nagios Plugins Source compileren in installeren" >> /root/LinSvc.log
+cd /tmp/nagios-plugins-release-2.2.1/
+./tools/setup
+./configure
+make
+make install
+
+systemctl restart nagios.service
+echo "Nagios Plugins voltooid" >> /root/LinSvc.log
