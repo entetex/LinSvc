@@ -34,6 +34,11 @@ else
     echo "Swap allready exists" >> /root/LinSvc.log
 fi
 
+# Stel de juiste tijdzone in
+timedatectl set-timezone Europe/Amsterdam
+apt install -y ntp
+echo "Tijd ingesteld" >> /root/LinSvc.log
+
 
 #=====================================================#
 
