@@ -77,6 +77,10 @@ cd /tmp/nagios-plugins-release-2.2.1/
 make
 make install
 
+apt install -y nagios-plugins
+
+sed -ie 's:\$USER1\$/check_snmp -H \$HOSTADDRESS\$ \$ARG1\$:/usr/lib/nagios/plugins/check_snmp -H \$HOSTADDRESS\$ -C \$ARG1\$ -P 1 -o \$ARG2\$:' /usr/local/nagios/etc/objects/commands.cfg
+
 echo "Nagios SNMPd Stel hosts en services in" >> /root/LinSvc.log
 wget https://raw.githubusercontent.com/entetex/LinSvc/master/objects/hosts.cfg -P /usr/local/nagios/etc/
 echo "cfg_file=/usr/local/nagios/etc/objects/hosts.cfg" >> /usr/local/nagios/etc/nagios.cfg
