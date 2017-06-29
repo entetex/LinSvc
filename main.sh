@@ -99,9 +99,9 @@ echo "Salt minion install completed" >> /root/LinSvc.log
 # Stel de Syslog destination in.
 if [ $SaltMasterIP -eq $LocalIP ]
 then
-    # De Minion wordt ingesteld op de SaltMaster
-    echo "*.* @127.0.0.1" >> /etc/rsyslog.d/50-default.conf
+    echo "Syslog-NG draait lokaal" >> /root/LinSvc.log
 else
+    echo "Syslog-NG server wordt ingesteld" >> /root/LinSvc.log
     echo "*.* @$SaltMasterIP" >> /etc/rsyslog.d/50-default.conf
 fi
 
