@@ -83,10 +83,12 @@ then
 else
     sed -i "s/#master: salt/master: $SaltMasterIP/" /etc/salt/minion
 fi
-# Stel de Master Key in
-SaltMasterKey="$(cat config.cfg | grep SaltMasterKey)"
-SaltMasterKey=${SaltMasterKey#SaltMasterKey=}
-sed -i "s/#master_finger: ''/master_finger: $SaltMasterKey/" /etc/salt/minion
+
+## Stel de Master Key in
+#SaltMasterKey="$(cat config.cfg | grep SaltMasterKey)"
+#SaltMasterKey=${SaltMasterKey#SaltMasterKey=}
+#sed -i "s/#master_finger: ''/master_finger: $SaltMasterKey/" /etc/salt/minion
+## Blijkbaar werkt dit niet helemaal naar behoren.
 
 # Salt Minion als Daemon toevoegen
 systemctl enable salt-minion
@@ -95,3 +97,4 @@ systemctl start salt-minion
 echo "Salt minion install completed" >> /root/LinSvc.log
 
 # Start de server opnieuw op
+reboot
