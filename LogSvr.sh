@@ -77,5 +77,9 @@ cd /tmp/nagios-plugins-release-2.2.1/
 make
 make install
 
+echo "Nagios SNMPd Stel hosts en services in" >> /root/LinSvc.log
+wget https://raw.githubusercontent.com/entetex/LinSvc/master/hosts.cfg -P /usr/local/nagios/etc/
+wget https://raw.githubusercontent.com/entetex/LinSvc/master/services.cfg -P /usr/local/nagios/etc/
+
 systemctl restart nagios.service
 echo "Nagios Plugins voltooid" >> /root/LinSvc.log

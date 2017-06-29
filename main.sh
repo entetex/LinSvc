@@ -96,6 +96,9 @@ systemctl enable salt-minion
 systemctl start salt-minion
 echo "Salt minion install completed" >> /root/LinSvc.log
 
+
+#=====================================================#
+
 # Stel de Syslog destination in.
 if [ $SaltMasterIP -eq $LocalIP ]
 then
@@ -104,6 +107,22 @@ else
     echo "Syslog-NG server wordt ingesteld" >> /root/LinSvc.log
     echo "*.* @$SaltMasterIP" >> /etc/rsyslog.d/50-default.conf
 fi
+
+#=====================================================#
+# Bereid voor op gebruik nagios voor monitoring
+# https://www.unixmen.com/monitor-linux-server-nagios-core-using-snmp/
+echo "SNMPd installatie" >> /root/LinSvc.log
+apt install -y snmpd
+
+# Accepteer SNMPd van alle adressen
+sed -i "s/agentAddress  udp:127.0.0.1:161/agentAddress udp:161,udp6:[::1]:161/" /etc/snmp/snmpd.conf
+echo "view   all  included .1   80" >> /etc/snmp/snmpd.conf
+sed -i "s/ rocommunity public  default    -V systemonly/ rocommunity GeheimeSNMPdComm default -V all/" /etc/snmp/snmpd.conf
+sed -i "s/ rocommunity6 public  default   -V systemonly/ rocommunity6 GeheimeSNMPdComm default -V all/" /etc/snmp/snmpd.conf
+
+systemctl restart snmpd.service
+
+
 
 # Start de server opnieuw op
 reboot
