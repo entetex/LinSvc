@@ -30,4 +30,14 @@ apt update
 echo "Start installatie van docker" >> /root/LinSvc.log
 apt install docker-ce -y
 
+# Post installatie
+# https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user
+echo "Stel group en users in" >> /root/LinSvc.log
+# Is wellicht niet nodig, sinds salt werkt vanaf root
+groupadd docker
+usermod -aG docker ubuntu
+
+echo "Stel docker in als daemon" >> /root/LinSvc.log
+systemctl enable docker
+
 echo "Docker installatie voltooid" >> /root/LinSvc.log
