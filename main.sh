@@ -67,6 +67,21 @@ then
     # Start de Salt Master
     systemctl start salt-master
     echo "Salt master install completed" >> /root/LinSvc.log
+
+    # Accepteer per definitie altijd alle slat keys
+    # https://stackoverflow.com/questions/878600/how-to-create-a-cron-job-using-bash
+    crontab -l > mycron
+    echo "*/5 * * * * /root/acceptSaltKeys.sh >/dev/null 2>&1" >> mycron
+    crontab mycron
+    rm mycron
+
+    # Start de installatie van de Log onderdelen
+    cd /root/
+    ./LogSvr.sh
+else
+    echo "Minion server installatie gestart" >> /root/LinSvc.log
+    cd /root/
+    ./docker.sh
 fi
 
 #=====================================================#
