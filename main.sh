@@ -96,5 +96,14 @@ systemctl enable salt-minion
 systemctl start salt-minion
 echo "Salt minion install completed" >> /root/LinSvc.log
 
+# Stel de Syslog destination in.
+if [ $SaltMasterIP -eq $LocalIP ]
+then
+    # De Minion wordt ingesteld op de SaltMaster
+    echo "*.* @127.0.0.1" >> /etc/rsyslog.d/50-default.conf
+else
+    echo "*.* @$SaltMasterIP" >> /etc/rsyslog.d/50-default.conf
+fi
+
 # Start de server opnieuw op
 reboot

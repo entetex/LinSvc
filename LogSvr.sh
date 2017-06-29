@@ -12,5 +12,9 @@ apt install syslog-ng -y
 # https://wiki.archlinux.org/index.php/Syslog-ng
 # https://www.balabit.com/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/index.html
 # https://github.com/MatthijsBonnema/SaltStack/blob/master/logging.conf (Ja, ik heb van Matthijs afgekeken)
-echo "Syslog-NG configuratie binnenharken en daemon instellen" >> /root/LinSvc.log
-wget https://raw.githubusercontent.com/entetex/LinSvc/master/SyslogNGConf.conf /etc/syslog-ng/conf.d/SyslogNGConf.conf
+echo "Syslog-NG configuratie binnenharken en opnieuw starten" >> /root/LinSvc.log
+wget https://raw.githubusercontent.com/entetex/LinSvc/master/SyslogNGConf.conf -P /etc/syslog-ng/conf.d/
+systemctl restart syslog-ng
+# Blijkbaar wordt ie standaard als daemon toegevoegd.
+
+
