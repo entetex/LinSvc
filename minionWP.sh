@@ -17,4 +17,6 @@ then
     echo "    service_description     HTTP Check" >> /usr/local/nagios/etc/objects/$minion.cfg
     echo "    check_command           check_http!" >> /usr/local/nagios/etc/objects/$minion.cfg
     echo "}" >> /usr/local/nagios/etc/objects/$minion.cfg
+else
+    echo "Deze minion bestaat niet, of is onbereikbaar!"
 fi
