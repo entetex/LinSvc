@@ -3,3 +3,4 @@
 # https://docs.docker.com/compose/wordpress/
 cd /root/wordpress/
 docker-compose up -d
+iptables -P FORWARD ACCEPT
