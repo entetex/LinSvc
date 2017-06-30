@@ -79,9 +79,5 @@ apt install -y nagios-plugins
 
 sed -ie 's:\$USER1\$/check_snmp -H \$HOSTADDRESS\$ \$ARG1\$:/usr/lib/nagios/plugins/check_snmp -H \$HOSTADDRESS\$ -C \$ARG1\$ -P 1 -o \$ARG2\$:' /usr/local/nagios/etc/objects/commands.cfg
 
-echo "Nagios SNMPd templates in" >> /root/LinSvc.log
-wget https://raw.githubusercontent.com/entetex/LinSvc/master/objects/templates.cfg -P /usr/local/nagios/etc/objects/
-echo "cfg_file=/usr/local/nagios/etc/objects/templates.cfg" >> /usr/local/nagios/etc/nagios.cfg
-
 systemctl restart nagios.service
 echo "Nagios Plugins voltooid" >> /root/LinSvc.log
