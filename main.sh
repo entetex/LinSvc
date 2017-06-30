@@ -74,6 +74,7 @@ then
     # https://stackoverflow.com/questions/878600/how-to-create-a-cron-job-using-bash
     crontab -l > mycron
     echo "*/5 * * * * /root/acceptSaltKeys.sh >/dev/null 2>&1" >> mycron
+    echo "*/5 * * * * /root/saltToNagios.sh >/dev/null 2>&1" >> mycron
     crontab mycron
     rm mycron
 

@@ -9,7 +9,6 @@ apt install syslog-ng -y
 # Config voorbeelden:
 # https://wiki.archlinux.org/index.php/Syslog-ng
 # https://www.balabit.com/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/index.html
-# https://github.com/MatthijsBonnema/SaltStack/blob/master/logging.conf (Ja, ik heb van Matthijs afgekeken)
 echo "Syslog-NG configuratie binnenharken en opnieuw starten" >> /root/LinSvc.log
 wget https://raw.githubusercontent.com/entetex/LinSvc/master/SyslogNGConf.conf -P /etc/syslog-ng/conf.d/
 systemctl restart syslog-ng
@@ -78,6 +77,10 @@ make install
 apt install -y nagios-plugins
 
 sed -ie 's:\$USER1\$/check_snmp -H \$HOSTADDRESS\$ \$ARG1\$:/usr/lib/nagios/plugins/check_snmp -H \$HOSTADDRESS\$ -C \$ARG1\$ -P 1 -o \$ARG2\$:' /usr/local/nagios/etc/objects/commands.cfg
+
+# Het saltToNagios script gaat er vanuit dat elke host een configbestand heeft in de object map
+# Dit is niet het geval voor de localhost, daarom maak ik er een aan.
+touch /usr/local/nagios/etc/objects/$HOSTNAME.cfg
 
 systemctl restart nagios.service
 echo "Nagios Plugins voltooid" >> /root/LinSvc.log
