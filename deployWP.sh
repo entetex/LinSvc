@@ -1,5 +1,5 @@
 #!/bin/bash
-SaltMinionHostname="$(cat config.cfg | grep SaltMinionHostname)"
-SaltMinionHostname=${SaltMinionHostname#SaltMinionHostname=}
-
-salt $SaltMinionHostname cmd.run 'pwd'
+# Wordpress installatie door middel van composer
+# https://docs.docker.com/compose/wordpress/
+cd /root/wordpress/
+docker-compose up -d
