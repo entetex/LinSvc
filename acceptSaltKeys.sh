@@ -1,2 +1,2 @@
 #!/bin/bash
-salt-key -A
+salt-key -A -y
