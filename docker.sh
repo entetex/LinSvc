@@ -28,7 +28,7 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(
 apt update
 
 echo "Start installatie van docker" >> /root/LinSvc.log
-apt install docker-ce -y
+apt install docker-ce docker-compose -y
 
 # Post installatie
 # https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user
