@@ -40,7 +40,7 @@ make install
 make install-init
 update-rc.d nagios defaults
 make install-commandmode
-sudo make install-config
+make install-config
 
 echo "Nagios webcomponenten installeren" >> /root/LinSvc.log
 make install-webconf
