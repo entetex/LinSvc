@@ -15,6 +15,6 @@ then
     echo "    use                     generic-service" >> /usr/local/nagios/etc/objects/$minion.cfg
     echo "    host_name               $minion" >> /usr/local/nagios/etc/objects/$minion.cfg
     echo "    service_description     HTTP Check" >> /usr/local/nagios/etc/objects/$minion.cfg
-    echo "    check_command           !check_http!" >> /usr/local/nagios/etc/objects/$minion.cfg
+    echo "    check_command           check_http!" >> /usr/local/nagios/etc/objects/$minion.cfg
     echo "}" >> /usr/local/nagios/etc/objects/$minion.cfg
 fi
