@@ -2,7 +2,6 @@
 
 # Verander naar Root
 sudo -i
-touch /root/LinSvc.log
 echo "Begin LinSvc" >> /root/LinSvc.log
 
 # Zet de Hostname in de Hosts file
