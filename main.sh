@@ -1,13 +1,16 @@
 #!/bin/bash
-
-# Verander naar Root
-sudo -i
 echo "Begin LinSvc" >> /root/LinSvc.log
+echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
+
+## Verander naar Root
+#sudo -i
+# Blijkbaar moet je geen sudo -i toepassen binnen een script. Dan gaaat ie deaud
+
 
 # Zet de Hostname in de Hosts file
 # https://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none
 echo "Add hostname" >> /root/LinSvc.log
-echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
+
 
 # Upgrade de geinstalleerde packages
 echo "Apt update" >> /root/LinSvc.log

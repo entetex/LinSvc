@@ -3,7 +3,6 @@
 # Installatie van Docker
 # https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#recommended-extra-packages-for-trusty-1404
 
-sudo -i
 echo "BEGIN DOCKER" >> /root/LinSvc.log
 
 apt-get update

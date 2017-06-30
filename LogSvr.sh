@@ -1,8 +1,6 @@
 #!/bin/bash
 # Installatiescript voor Syslog-NG en Nagios
 
-sudo -i
-
 echo "Begin installatie van Syslog-NG" >> /root/LinSvc.log
 # https://blog.webernetz.net/2014/07/24/basic-syslog-ng-installation/
 
